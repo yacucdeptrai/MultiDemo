@@ -1,7 +1,7 @@
 # Báo Cáo Tìm Hiểu Về Đa Luồng và Đa Tiến Trình
 
 ## 1. Giới thiệu
-Trong lập trình, **đa luồng (multithreading)** và **đa tiến trình (multiprocessing)** là hai kỹ thuật quan trọng để tối ưu hóa hiệu suất xử lý và tận dụng tài nguyên hệ thống, đặc biệt trong các tác vụ yêu cầu thực thi đồng thời. Báo cáo này dựa trên chương trình `complete_system_monitor.py` để phân tích cách triển khai, đo đạc tài nguyên và so sánh hiệu quả của hai kỹ thuật này trên một hệ thống thực tế.
+Trong lập trình, **đa luồng (multithreading)** và **đa tiến trình (multiprocessing)** là hai kỹ thuật quan trọng để tối ưu hóa hiệu suất xử lý và tận dụng tài nguyên hệ thống, đặc biệt trong các tác vụ yêu cầu thực thi đồng thời. Báo cáo này dựa trên chương trình `multi_demo.py` để phân tích cách triển khai, đo đạc tài nguyên và so sánh hiệu quả của hai kỹ thuật này trên một hệ thống thực tế.
 
 Chương trình được viết bằng Python, sử dụng các thư viện như `threading`, `multiprocessing`, `psutil`, `tabulate`, và `numpy` để thực hiện một tác vụ mẫu (tính tổng các số), giám sát tài nguyên (CPU, RAM), và trình bày kết quả dưới dạng bảng.
 
@@ -26,7 +26,7 @@ Chương trình được viết bằng Python, sử dụng các thư viện như
   - Tiêu tốn nhiều tài nguyên hơn (bộ nhớ, thời gian khởi tạo tiến trình).
   - Giao tiếp giữa các tiến trình phức tạp hơn (cần IPC - Inter-Process Communication).
 
-## 3. Phân tích chương trình `complete_system_monitor.py`
+## 3. Phân tích chương trình `multi_demo.py`
 
 ### 3.1. Mô tả chương trình
 Chương trình thực hiện một tác vụ mẫu (tính tổng các số từ 1 đến 10,000,000) với 10 tác vụ, sử dụng 4 công nhân (worker) cho cả đa luồng và đa tiến trình. Các tính năng chính bao gồm:
@@ -119,7 +119,7 @@ Kết quả được trình bày trong bảng sau:
 - **Đa tiến trình**: Lý tưởng cho các tác vụ CPU-bound như xử lý dữ liệu lớn, tính toán khoa học. Tuy nhiên, cần tối ưu hóa để tận dụng đa lõi CPU.
 
 ## 5. Kết luận
-Chương trình `complete_system_monitor.py` cung cấp một công cụ hữu ích để nghiên cứu đa luồng và đa tiến trình trong Python. Kết quả thực tế cho thấy:
+Chương trình `multi_demo.py` cung cấp một công cụ hữu ích để nghiên cứu đa luồng và đa tiến trình trong Python. Kết quả thực tế cho thấy:
 - **Hiệu suất**: Đa luồng và đa tiến trình có thời gian thực thi tương đương (khoảng 2 giây) do tác vụ nhỏ và GIL giới hạn đa luồng.
 - **Tài nguyên**: Cả hai phương pháp sử dụng ít CPU (<3%) và RAM (khoảng 38 MB), cho thấy hệ thống chưa được khai thác hết.
 - **Hạn chế**: GIL ảnh hưởng lớn đến đa luồng, và đa tiến trình chưa thể hiện rõ lợi thế do số lượng tác vụ nhỏ hoặc lỗi ghi nhận ID tiến trình con.
