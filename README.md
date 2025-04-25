@@ -124,13 +124,6 @@ Chương trình `complete_system_monitor.py` cung cấp một công cụ hữu �
 - **Tài nguyên**: Cả hai phương pháp sử dụng ít CPU (<3%) và RAM (khoảng 38 MB), cho thấy hệ thống chưa được khai thác hết.
 - **Hạn chế**: GIL ảnh hưởng lớn đến đa luồng, và đa tiến trình chưa thể hiện rõ lợi thế do số lượng tác vụ nhỏ hoặc lỗi ghi nhận ID tiến trình con.
 
-### Đề xuất cải thiện
-1. **Tăng quy mô tác vụ**: Tăng số lượng tác vụ hoặc độ phức tạp để so sánh rõ ràng hơn giữa đa luồng và đa tiến trình.
-2. **Sửa lỗi ghi nhận ID**: Trong hàm `run_multiprocessing`, cần lấy ID của tiến trình con (có thể sử dụng `multiprocessing.current_process().pid`) thay vì `os.getpid()`.
-3. **Tối ưu hóa tài nguyên**: Sử dụng các công cụ như `concurrent.futures` với cấu hình phù hợp hơn để phân bổ công việc trên nhiều CPU.
-4. **Thêm biểu đồ**: Sử dụng `matplotlib` để trực quan hóa mức sử dụng CPU/RAM theo thời gian.
-5. **Thử nghiệm I/O-bound**: Thêm tác vụ I/O-bound (như đọc/ghi file) để đánh giá hiệu quả của đa luồng.
-
 ## 6. Tài liệu tham khảo
 - Python Documentation: `threading`, `multiprocessing`.
 - Psutil Documentation: https://psutil.readthedocs.io/
